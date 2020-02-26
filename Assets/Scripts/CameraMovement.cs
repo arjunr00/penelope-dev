@@ -46,7 +46,11 @@ public class CameraMovement : MonoBehaviour
             Vector3 rot = transform.rotation.eulerAngles;
             rot.y = HeadTransform.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Euler(rot);
-            transform.position = HeadTransform.position;
+            // TODO - REMOVE
+            Vector3 temp = HeadTransform.position;
+            temp.x += 3;
+            //
+            transform.position = temp;
         }
 
         if (m_Player.GetComponent<NewPenelopeMovement>().hide_wardrobe)
