@@ -8,6 +8,8 @@ public class NewPenelopeMovement : MonoBehaviour
     private Animator m_Animator;
     private Rigidbody m_Rigidbody;
     private GameObject m_Wardrobe;
+    private bool walkingToHopping = false;
+    public AnimationClip hopping;
     private int State;
     public bool walking;
     public bool running;
@@ -20,6 +22,8 @@ public class NewPenelopeMovement : MonoBehaviour
     public bool isCrouchMoving;
     public bool isProne;
     public bool isProneMoving;
+    public bool leftLegGone;
+    public bool rightLegGone;
     public bool isStanding = true;
     public float speed;
 
@@ -45,11 +49,32 @@ public class NewPenelopeMovement : MonoBehaviour
         isProne = false;
         isProneMoving = false;
         isStanding = true;
+        leftLegGone = false;
+        rightLegGone = false;
+
         speed = 1.2f;
     }
 
     void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.L)) //Pop a leg off!
+        {
+            //USE RuntimeAnimatorController TO DO THIS
+            leftLegGone = !leftLegGone;
+            m_Animator.SetBool("Left Leg Gone", leftLegGone);
+        }
+
+        if((leftLegGone || rightLegGone) && (!walkingToHopping))
+        {
+            AnimatorOverrideController aoc = new AnimatorOverrideController(m_Animator.runtimeAnimatorController);
+            m_Animator.runtimeAnimatorController = aoc;
+            aoc["Walking (1)"] = aoc["Jumping Rope"];
+            aoc["Running (1)"] = aoc["Jumping Rope"];
+            Debug.Log("Walking/Running switched to hopping");
+            m_Animator.Play("Walking");
+            walkingToHopping = true;
+        }
+
         if (m_Wardrobe.GetComponent<Wardrobe>().wardrobe_range)
         {
             Transform wdTx = m_Wardrobe.transform;
