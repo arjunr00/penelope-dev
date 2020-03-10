@@ -22,6 +22,7 @@ public class NewPenelopeMovement : MonoBehaviour
     public bool isProneMoving;
     public bool isStanding = true;
     public float speed;
+    public bool isLookingAtDoor = false;
 
     public float cPressTimeRequired = 0.5f;
     public float cPressTime = 0;
@@ -50,6 +51,38 @@ public class NewPenelopeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        float thickness = 1f;
+        Vector3 origin = transform.position;
+        Vector3 direction = transform.TransformDirection(Vector3.forward);
+        RaycastHit hit;
+        GameObject door = null;
+
+        if (Physics.SphereCast(origin, thickness, direction, out hit, 10))
+        {
+            if (hit.transform.gameObject.tag == "Door")
+            {
+                door = hit.transform.gameObject;
+                isLookingAtDoor = true;
+            } else
+            {
+                isLookingAtDoor = false;
+            }
+        }
+
+        print(isLookingAtDoor);
+        if (isLookingAtDoor)
+        {
+            print("Looking at door");
+            if (Input.GetKeyUp(KeyCode.H))
+            {
+                print("Opening door");
+                if (door != null)
+                {
+                    door.GetComponent<DoorScript>().ToggleDoor();
+                }
+            }
+        }
+
         if (m_Wardrobe.GetComponent<Wardrobe>().wardrobe_range)
         {
             Transform wdTx = m_Wardrobe.transform;
