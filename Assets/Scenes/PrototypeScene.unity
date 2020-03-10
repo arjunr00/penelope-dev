@@ -925,12 +925,15 @@ MonoBehaviour:
   wander_target: {fileID: 217369548}
   wander_time: 5
   wander_radius: 1
-  wander_speed: 0.2
+  wander_speed: 0.5
   wander_space: 0.6
   max_angle_change: 30
   min_angle_change: 80
   max_mvmt: 1
   min_mvmt: 0.2
+  stray_radius: 1
+  stray_speed: 1
+  stray_proximity: 0.5
 --- !u!95 &671687090
 Animator:
   serializedVersion: 3
@@ -2173,6 +2176,7 @@ MonoBehaviour:
   Pen_Cam_rot: {x: 0, y: 0, z: 0, w: 0}
   Pen_pos: {x: 0, y: 0, z: 0}
   Pen_rot: {x: 0, y: 0, z: 0, w: 0}
+  SuspiciousObj: {fileID: 0}
 --- !u!65 &1940414356
 BoxCollider:
   m_ObjectHideFlags: 0
