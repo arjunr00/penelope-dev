@@ -5,35 +5,40 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     public bool isOpen = true;
-    public float rotSpeed = 1.0f;
-    Quaternion startRot, endRot;
-
-    private void Start()
-    {
-        startRot = Quaternion.LookRotation(transform.forward);
-        endRot = Quaternion.LookRotation(transform.right);
-    }
+    public bool isToggling = false;
+    public float rotSpeed = 250f;
 
     private void Update()
     {
-        if (transform.rotation != endRot)
+        float eulerAngY = transform.localEulerAngles.y;
+        print(eulerAngY);
+        if (isToggling && isOpen)
         {
-            transform.rotation = Quaternion.Slerp(startRot, endRot, Time.time * rotSpeed);
+            // Close
+            if (eulerAngY <= 180)
+            {
+                transform.Rotate(new Vector3(0f, rotSpeed, 0f) * Time.deltaTime);
+            } else
+            {
+                isToggling = false;
+                isOpen = false;
+            }
+        } else if (isToggling && !isOpen)
+        {
+            // Open
+            if (eulerAngY >= 90)
+            {
+                transform.Rotate(new Vector3(0f, -1*rotSpeed, 0f) * Time.deltaTime);
+            } else
+            {
+                isToggling = false;
+                isOpen = true;
+            }
         }
     }
 
     public void ToggleDoor()
     {
-        print("toggling door");
-        if (isOpen)
-        {
-            startRot = Quaternion.LookRotation(transform.forward);
-            endRot = Quaternion.LookRotation(transform.right);
-        } else
-        {
-            endRot = Quaternion.LookRotation(transform.forward);
-            startRot = Quaternion.LookRotation(transform.right);
-        }
-        isOpen = !isOpen;
+        isToggling = true;
     }
 }

@@ -776,6 +776,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 1
+  isToggling: 0
+  rotSpeed: 500
 --- !u!1 &599944295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +1139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 1
+  isToggling: 0
+  rotSpeed: 250
 --- !u!1 &907917210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,6 +2383,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: spookChair
       objectReference: {fileID: 0}
+    - target: {fileID: 5632538266673804392, guid: 909743342a2ffa646b8306e1da541fd7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 2557924231649418704, guid: 909743342a2ffa646b8306e1da541fd7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     - target: {fileID: 4553344258273320245, guid: 909743342a2ffa646b8306e1da541fd7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2509,16 +2523,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 2.244
       objectReference: {fileID: 0}
-    - target: {fileID: 2557924231649418704, guid: 909743342a2ffa646b8306e1da541fd7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Door
-      objectReference: {fileID: 0}
-    - target: {fileID: 5632538266673804392, guid: 909743342a2ffa646b8306e1da541fd7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Door
-      objectReference: {fileID: 0}
     - target: {fileID: 7693207514702396308, guid: 909743342a2ffa646b8306e1da541fd7,
         type: 3}
       propertyPath: m_Enabled
@@ -2549,5 +2553,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5889223678778323023, guid: 909743342a2ffa646b8306e1da541fd7,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d3693a3b7865a46a192ab9a086cd2dad, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909743342a2ffa646b8306e1da541fd7, type: 3}
